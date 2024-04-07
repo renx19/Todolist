@@ -6,8 +6,6 @@ logs/
 
 # Environment variables
 .env
-
-# Vercel configuration file
 vercel.json
 
 # IDE/Editor files

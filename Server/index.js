@@ -7,8 +7,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed methods here
+  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app/'],
   credentials: true,
 }));
 app.use(express.json());
