@@ -7,10 +7,9 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app/'],
+  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app'],
   credentials: true,
 }));
-app.use(express.json());
 
 // Connect to MongoDB using environment variable
 mongoose.connect(process.env.MONGODB_URI, {
