@@ -6,10 +6,17 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app'],
+// Add the cors options
+const corsOptions = {
+  origin: ['https://todolist-gfcv.vercel.app'],
   credentials: true,
-}));
+};
+
+// Use cors with options
+app.use(cors(corsOptions));
+
+
+
 
 // Connect to MongoDB using environment variable
 mongoose.connect(process.env.MONGODB_URI, {
