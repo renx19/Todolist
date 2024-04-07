@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -5,14 +7,16 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'https://todolist-gfcv.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed methods here
   credentials: true,
 }));
 app.use(express.json());
 
-
-// Connect to MongoDB
-mongoose.connect('mongodb+srv://renasanamiya:nAwcQNmp2tDrRYTr@cluster0.rl4ky2h.mongodb.net/Todo');
+// Connect to MongoDB using environment variable
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
