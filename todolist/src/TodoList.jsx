@@ -14,7 +14,7 @@ function TodoList() {
   }, []);
 
   const fetchTodos = () => {
-    axios.get('http://localhost:3001/todos')
+    axios.get('https://todolist-be-m2hf.onrender.com/todos')
       .then(response => setTodos(response.data))
       .catch(error => console.error(error));
   };
@@ -31,7 +31,7 @@ function TodoList() {
     }
 
     // Send only the text property without extra nesting
-    axios.post('http://localhost:3001/add', { text: todo.text })
+    axios.post('https://todolist-be-m2hf.onrender.com/add', { text: todo.text })
       .then(response => {
         setTodos(prevTodos => [response.data, ...prevTodos]);
       })
@@ -43,7 +43,7 @@ function TodoList() {
       return;
     }
 
-    axios.put(`http://localhost:3001/update/${todoId}`, newValue.text)
+    axios.put(`https://todolist-be-m2hf.onrender.com/update/${todoId}`, newValue.text)
       .then(response => {
         setTodos(prevTodos =>
           prevTodos.map((item) => (item._id === todoId ? { ...item, text: response.data.text } : item))
@@ -57,7 +57,7 @@ function TodoList() {
   };
 
   const removeTodo = (id) => {
-    axios.delete(`http://localhost:3001/delete/${id}`)
+    axios.delete(`https://todolist-be-m2hf.onrender.com/delete/${id}`)
       .then(() => {
         // Use the correct property for comparison (_id instead of id)
         setTodos(prevTodos => prevTodos.filter((todo) => todo._id !== id));
@@ -66,7 +66,7 @@ function TodoList() {
   };
 
   const completeTodo = (id) => {
-    axios.put(`http://localhost:3001/complete/${id}`)
+    axios.put(`https://todolist-be-m2hf.onrender.com/complete/${id}`)
       .then(() => {
         setTodos(prevTodos =>
           prevTodos.map((todo) =>
