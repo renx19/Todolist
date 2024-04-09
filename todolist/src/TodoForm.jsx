@@ -15,27 +15,30 @@ function TodoForm({ onSubmit, edit, onSearch }) {
   };
 
   return (
-    <form className="todo-form" onSubmit={handleSubmit}>
-      {/* Search bar */}
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => onSearch(e.target.value)}
-        className="search-bar"
-      />
-      
-      <input
-        type="text"
-        placeholder={edit ? 'Update your todo' : 'Add a new todo'}
-        value={input}
-        name="text"
-        className="todo-input"
-        onChange={handleChange}
-      />
-      <button className="todo-button" type="submit">
-        {edit ? 'Update' : 'Add todo'}
-      </button>
-    </form>
+    <div className="todo-form">
+  {/* Search bar */}
+  <input
+    type="text"
+    placeholder="Search..."
+    onChange={(e) => onSearch(e.target.value)}
+    className="search-bar"
+  />
+  
+  <form onSubmit={handleSubmit} className="todo-input-container">
+    <input
+      type="text"
+      placeholder={edit ? 'Update your todo' : 'Add a new todo'}
+      value={input}
+      name="text"
+      className="todo-input"
+      onChange={handleChange}
+    />
+    <button className="todo-button" type="submit">
+      {edit ? 'Update' : 'Add todo'}
+    </button>
+  </form>
+</div>
+
   );
 }
 
