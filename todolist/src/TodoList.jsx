@@ -14,7 +14,7 @@ function TodoList() {
   }, []);
 
   const fetchTodos = () => {
-    axios.get('https://todolist-backend-renx19s-projects.vercel.app/todos')
+    axios.get('http://localhost:3001/todos')
       .then(response => setTodos(response.data))
       .catch(error => console.error(error));
   };
@@ -31,7 +31,7 @@ function TodoList() {
     }
 
     // Send only the text property without extra nesting
-    axios.post('https://todolist-backend-renx19s-projects.vercel.app/add', { text: todo.text })
+    axios.post('http://localhost:3001/add', { text: todo.text })
       .then(response => {
         setTodos(prevTodos => [response.data, ...prevTodos]);
       })
@@ -43,7 +43,7 @@ function TodoList() {
       return;
     }
 
-    axios.put(`https://todolist-backend-renx19s-projects.vercel.app/update/${todoId}`, newValue.text)
+    axios.put(`http://localhost:3001/update/${todoId}`, newValue.text)
       .then(response => {
         setTodos(prevTodos =>
           prevTodos.map((item) => (item._id === todoId ? { ...item, text: response.data.text } : item))
@@ -57,7 +57,7 @@ function TodoList() {
   };
 
   const removeTodo = (id) => {
-    axios.delete(`https://todolist-backend-renx19s-projects.vercel.app/delete/${id}`)
+    axios.delete(`http://localhost:3001/delete/${id}`)
       .then(() => {
         // Use the correct property for comparison (_id instead of id)
         setTodos(prevTodos => prevTodos.filter((todo) => todo._id !== id));
@@ -66,7 +66,7 @@ function TodoList() {
   };
 
   const completeTodo = (id) => {
-    axios.put(`https://todolist-backend-renx19s-projects.vercel.app/complete/${id}`)
+    axios.put(`http://localhost:3001/complete/${id}`)
       .then(() => {
         setTodos(prevTodos =>
           prevTodos.map((todo) =>
